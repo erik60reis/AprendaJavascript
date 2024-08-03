@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMirror Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/material.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #151515;
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+        }
+        .editor-container {
+            width: 80%;
+            max-width: 800px;
+            border: 1px solid #444;
+            padding: 10px;
+            background-color: #1e1e1e;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .CodeMirror {
+            height: auto;
+        }
+        h1, div {
+            color: white;
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        h3 {
+            color: rgb(210, 210, 210);
+        }
+        .execute-button {
+            width: 80%;
+            max-width: 800px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .execute-button:hover {
+            background-color: #218838;
+        }
+        .output-container {
+            width: 80%;
+            max-width: 800px;
+            padding: 10px;
+            border: 1px solid #444;
+            background-color: #1e1e1e;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            min-height: 50px;
+            white-space: pre-wrap; /* Mantém as quebras de linha e espaços */
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <h1>Bem Vindo</h1>
+        <h3>bem vindo ao javascript, começe digitando <span style="color: green; font-weight: bold;">console.log("oi")</span> e clique em <span style="background-color: #28a745; border-radius: 5px; padding: 2px;">Executar ▶️</span></h3>
+        <!--h3>use [ctrl + barra de espaço] para mostrar toda as opçoes que você pode usar!</h3-->
+        <textarea id="code" name="code"></textarea>
+    </div>
+    <button class="execute-button" onclick="executeCode()">Executar ▶️</button>
+    <div class="output-container" id="output"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/show-hint.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/addon/hint/javascript-hint.min.js"></script>
+    <script>
+        // Inicializa o editor CodeMirror com tema e autocompletar
+        var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+            lineNumbers: true,
+            mode: "javascript",
+            theme: "material",
+            extraKeys: {"Ctrl-Space": "autocomplete"}
+        });
+
+        function captureConsole(logFunction) {
+            return function(message) {
+                const output = document.getElementById('output');
+                output.textContent += message + '\n';
+                logFunction.apply(console, arguments);
+            };
+        }
+
+        console.log = captureConsole(console.log);
+        console.error = captureConsole(console.error);
+
+        function executeCode() {
+            const output = document.getElementById('output');
+            output.innerHTML = ''; // Limpa o output antes de executar o novo código
+
+            try {
+                const result = eval(editor.getValue());
+                if (result !== undefined) {
+                    console.log(result);
+                }
+            } catch (error) {
+                console.error('Erro: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
