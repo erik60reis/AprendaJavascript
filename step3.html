@@ -12,14 +12,16 @@
 <body>
     <div class="editor-container">
         <h1>Bem Vindo</h1>
-        <h3>bem vindo ao javascript, começe digitando <span style="color: green; font-weight: bold;">console.log("oi")</span> e clique em <span style="background-color: #28a745; border-radius: 5px; padding: 2px;">Executar ▶️</span></h3>
+        <h3>é possível criar variáveis no javscript</h3>
+        <h3>invés do 1 + 1, faça com que o código mostre "oi" novamente mas apenas mudando a variável</h3>
         <!--h3>use [ctrl + barra de espaço] para mostrar toda as opçoes que você pode usar!</h3-->
-        <textarea id="code" name="code">
+<textarea id="code" name="code">
+let variavel_1 = 1 + 1
 
-</textarea>
+console.log(variavel_1)</textarea>
     </div>
     <button class="execute-button" onclick="executeCode()">Executar ▶️</button>
-    <button class="next-step-button" onclick="window.location.href = 'step2.html';">próximo passo</button>
+    <button class="next-step-button" onclick="window.location.href = 'step4.html';">próximo passo</button>
     <div class="output-container" id="output"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>

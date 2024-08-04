@@ -1,0 +1,74 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #151515;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+}
+.editor-container {
+    width: 80%;
+    max-width: 800px;
+    border: 1px solid #444;
+    padding: 10px;
+    background-color: #1e1e1e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.CodeMirror {
+    height: auto;
+}
+h1, div {
+    color: white;
+}
+h1, h2, h3 {
+    text-align: center;
+}
+h3 {
+    color: rgb(210, 210, 210);
+}
+.execute-button {
+    width: 80%;
+    max-width: 800px;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.next-step-button {
+    width: 70%;
+    max-width: 700px;
+    padding: 10px;
+    background-color: #3b6745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.execute-button:hover {
+    background-color: #218838;
+}
+.output-container {
+    width: 80%;
+    max-width: 800px;
+    padding: 10px;
+    border: 1px solid #444;
+    background-color: #1e1e1e;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    min-height: 50px;
+    white-space: pre-wrap; /* Mantém as quebras de linha e espaços */
+}
